@@ -21,8 +21,6 @@ def main():
 
     dataset = weave.ref(f"{TASK}_test").get()
 
-    """This script det"""
-
     class MyModel5(Model):
         prompt: str
 
