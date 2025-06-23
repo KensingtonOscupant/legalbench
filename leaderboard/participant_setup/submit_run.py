@@ -10,6 +10,7 @@ def main():
     parser.add_argument('--task', type=str, help='Task name')
     parser.add_argument('--team', type=str, help='Weave team name')
     parser.add_argument('--project', type=str, help='Weave project name')
+    parser.add_argument('--model_name', type=str, help='Name you would like to show up on the leaderboard')
     
     args = parser.parse_args()
     
@@ -21,22 +22,22 @@ def main():
 
     dataset = weave.ref(f"{TASK}_test").get()
 
-    class MyModel5(Model):
-        prompt: str
+    class MyModel(Model):
+        prompt_template: str
 
         @weave.op()
         def predict(self, text: str):
-            prompt = self.prompt
+            prompt_template = self.prompt_template
 
-            prompt_for_model = prompt.replace("{{text}}", text)
+            prompt = prompt_template.replace("{{text}}", text)
             
-            return {'generation': prompt_for_model}
+            return {'generation': prompt}
 
     # Load base prompt
     with open(f"tasks/{TASK}/base_prompt.txt") as in_file:
         prompt_template = in_file.read()
 
-    model = MyModel5(prompt=prompt_template)
+    model = MyModel(prompt_template=prompt_template, name=args.model_name)
 
     eval = weave.ref(f"{TASK}_evaluation").get()
 
