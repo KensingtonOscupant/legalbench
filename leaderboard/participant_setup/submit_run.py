@@ -8,8 +8,8 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description='Submit a run for a single LegalBench task')
     parser.add_argument('--task', type=str, help='Task name')
-    parser.add_argument('--team', type=str, help='Weave team name')
-    parser.add_argument('--project', type=str, help='Weave project name')
+    parser.add_argument('--team', default='fuels', type=str, help='Weave team name')
+    parser.add_argument('--project', default='legalbench-wandb', type=str, help='Weave project name')
     parser.add_argument('--model_name', type=str, help='Name you would like to show up on the leaderboard')
     
     args = parser.parse_args()
