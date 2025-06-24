@@ -13,7 +13,7 @@ def arithmetic_mean(score_rows):
 def balanced_accuracy(score_rows):
     gold = [row["normalized_answer"]     for row in score_rows]
     pred = [row["normalized_generation"] for row in score_rows]
-    balanced_accuracy = balanced_accuracy_score(gold, pred)
+    return balanced_accuracy_score(gold, pred)
 
 def micro_f1(score_rows):
     tp_total = sum(row.get("tp", 0) for row in score_rows)
