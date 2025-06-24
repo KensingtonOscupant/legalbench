@@ -20,8 +20,8 @@ TASKS = [
 
 def main():
     parser = argparse.ArgumentParser(description='Submit runs for all LegalBench tasks')
-    parser.add_argument('--team', type=str, help='Weave team name')
-    parser.add_argument('--project', type=str, help='Weave project name')
+    parser.add_argument('--team', default='fuels', type=str, help='Weave team name')
+    parser.add_argument('--project', default='legalbench-wandb', type=str, help='Weave project name')
     
     args = parser.parse_args()
     
